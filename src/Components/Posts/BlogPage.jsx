@@ -1,4 +1,4 @@
-import BlogPost from '../BlogPost'
+import BlogPost from './BlogPost'
 import posts from '../data/posts'
 import './BlogPage.css'
 
