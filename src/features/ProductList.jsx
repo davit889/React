@@ -11,9 +11,19 @@ const ProductList = () => {
 
   useEffect(() => {
     axios.get('https://fakestoreapi.com/products?limit=8').then((res) => {
-      dispatch(setProducts(res.data))
+      dispatch(
+        setProducts(
+          res.data.map((i) => {
+            return {
+              ...i,
+              quantity: 1,
+            }
+          })
+        )
+      )
     })
   }, [dispatch])
+  console.log(products)
 
   return (
     <div className="proect">
@@ -26,6 +36,8 @@ const ProductList = () => {
             </div>
             <h3>{product.title}</h3>
             <p>Price: ${product.price}</p>
+            <button>-</button>
+            <button>+</button>
             <button onClick={() => dispatch(addToCart(product))}>🗑</button>
           </div>
         ))}
